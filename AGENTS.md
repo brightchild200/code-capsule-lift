@@ -12,4 +12,4 @@
 ## Architecture
 
 - This app is a migration of the "SENTINEL GRID" Next.js SOC dashboard (code archive). Sections live in src/routes/_dashboard/* with a shared shell in src/routes/_dashboard.tsx; shared UI state (search, ack, drawer, theme, sidebar) is in src/components/dashboard/dashboard-context.tsx. Keep new sections as child routes of _dashboard, not in-state page switching.
-- Sentel GRID data (warnings, assets) is synthetic demo data in src/components/dashboard/data.tsx; there is no backend by design.
+- SENTINEL GRID data (warnings, assets) is synthetic demo data in src/components/dashboard/data.tsx; there is no backend by design.
