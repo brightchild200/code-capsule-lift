@@ -5,17 +5,11 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * SENTINEL GRID design system — ported from the migrated Next.js app's
+ * globals.css. Dark SOC theme: deep navy surfaces with a teal accent.
+ * Light mode is applied in-app by the theme toggle through the
+ * .light-theme class, which redefines the surface tokens and carries over
+ * the source's text/border overrides.
  */
 
 @theme inline {
@@ -59,77 +53,92 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  /* SENTINEL GRID custom surfaces */
+  --color-surface: var(--surface);
+  --color-table-head: var(--table-head);
+  --color-on-accent: var(--on-accent);
 }
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
+  /* App shell background — #07111f */
+  --background: oklch(0.176 0.033 256.4);
+  --foreground: oklch(0.966 0.008 247.9);
+  /* Panel card surface — #101f33 */
+  --card: oklch(0.237 0.044 256);
+  --card-foreground: oklch(0.966 0.008 247.9);
+  /* Side surfaces (aside, drawer, inputs) — #0b1728 */
+  --popover: oklch(0.203 0.038 257.2);
+  --popover-foreground: oklch(0.966 0.008 247.9);
+  /* Teal accent — #2dd4bf */
+  --primary: oklch(0.785 0.133 181.9);
+  --primary-foreground: oklch(0.176 0.033 256.4);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.966 0.008 247.9);
+  --muted: oklch(0.279 0.041 260.031);
   --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.966 0.008 247.9);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
-}
-
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
+  --border: oklch(0.372 0.044 257);
+  --input: oklch(0.372 0.044 257);
+  --ring: oklch(0.785 0.133 181.9);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar: oklch(0.203 0.038 257.2);
+  --sidebar-foreground: oklch(0.966 0.008 247.9);
+  --sidebar-primary: oklch(0.785 0.133 181.9);
+  --sidebar-primary-foreground: oklch(0.176 0.033 256.4);
   --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --sidebar-accent-foreground: oklch(0.966 0.008 247.9);
+  --sidebar-border: oklch(0.372 0.044 257);
+  --sidebar-ring: oklch(0.785 0.133 181.9);
+  /* SENTINEL GRID custom surfaces */
+  --surface: oklch(0.203 0.038 257.2);
+  --table-head: oklch(0.22 0.041 255.3);
+  --on-accent: oklch(0.176 0.033 256.4);
+}
+
+/* Light theme, applied by the in-app toggle (.light-theme on the shell). */
+.light-theme {
+  color-scheme: light;
+  --background: oklch(0.974 0.006 239.8);
+  --card: oklch(1 0 0);
+  --surface: oklch(1 0 0);
+  --table-head: oklch(0.961 0.008 236.6);
+  --popover: oklch(1 0 0);
+  --sidebar: oklch(1 0 0);
+}
+
+/* Text and border overrides carried over from the source light theme. */
+.light-theme .text-slate-100,
+.light-theme .text-slate-200 {
+  color: #102338;
+}
+.light-theme .text-slate-300 {
+  color: #29445e;
+}
+.light-theme .text-slate-400 {
+  color: #536b80;
+}
+.light-theme .text-slate-500,
+.light-theme .text-slate-600 {
+  color: #71879a;
+}
+.light-theme .border-slate-700,
+.light-theme .border-slate-700\/60,
+.light-theme .border-slate-800\/80 {
+  border-color: #cfdae3;
+}
+.light-theme button:hover {
+  background-color: #edf3f7;
+}
+.light-theme .synthetic-badge {
+  color: #9a5b00;
 }
 
 @layer base {
@@ -140,5 +149,12 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .synthetic-badge {
+    @apply inline-flex items-center gap-1.5 rounded-md border border-amber-400/30 bg-amber-400/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-amber-300;
   }
 }
