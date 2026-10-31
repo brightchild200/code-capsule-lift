@@ -24,7 +24,7 @@ export const Route = createFileRoute("/_dashboard/warnings")({
 });
 
 function WarningCentre() {
-  const { query, ack, setSelected } = useDashboard();
+  const { query, setQuery, ack, setSelected } = useDashboard();
   const [severityFilter, setSeverityFilter] = useState<Severity | "All">("All");
   const [statusFilter, setStatusFilter] = useState("All");
 

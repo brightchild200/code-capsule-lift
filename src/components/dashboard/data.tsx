@@ -30,11 +30,34 @@ export const severityClass: Record<Severity, string> = {
 export function SeverityBadge({ severity }: { severity: Severity }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-md border px-2 py-1 text-[10px] font-bold uppercase tracking-wider ${severityClass[severity]}`}
+      className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-md border px-2 py-1 text-[10px] font-bold uppercase tracking-wider ${severityClass[severity]}`}
     >
       <span className="h-1.5 w-1.5 rounded-full bg-current" />
       {severity}
     </span>
+  );
+}
+
+export function EmptyState({
+  icon: Icon,
+  title,
+  detail,
+  children,
+}: {
+  icon: LucideIcon;
+  title: string;
+  detail?: string;
+  children?: ReactNode;
+}) {
+  return (
+    <div className="flex flex-col items-center justify-center gap-1.5 px-6 py-16 text-center">
+      <div className="mb-1 flex h-12 w-12 items-center justify-center rounded-full border border-slate-700/60 bg-surface">
+        <Icon className="h-5 w-5 text-slate-500" />
+      </div>
+      <h3 className="text-sm font-semibold text-slate-200">{title}</h3>
+      {detail && <p className="max-w-sm text-xs text-slate-500">{detail}</p>}
+      {children && <div className="mt-3">{children}</div>}
+    </div>
   );
 }
 
