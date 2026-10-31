@@ -10,32 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as DashboardRouteImport } from './routes/_dashboard'
+import { Route as DashboardIndexRouteImport } from './routes/_dashboard/index'
+import { Route as DashboardApprovalsRouteImport } from './routes/_dashboard/approvals'
+import { Route as DashboardAssetsRouteImport } from './routes/_dashboard/assets'
+import { Route as DashboardAuditRouteImport } from './routes/_dashboard/audit'
+import { Route as DashboardExposureRouteImport } from './routes/_dashboard/exposure'
+import { Route as DashboardSettingsRouteImport } from './routes/_dashboard/settings'
+import { Route as DashboardThreatsRouteImport } from './routes/_dashboard/threats'
+import { Route as DashboardWarningsRouteImport } from './routes/_dashboard/warnings'
 
 const DashboardRoute = DashboardRouteImport.update({
   id: '/_dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardApprovalsRoute = DashboardApprovalsRouteImport.update({
+  id: '/approvals',
+  path: '/approvals',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardAssetsRoute = DashboardAssetsRouteImport.update({
+  id: '/assets',
+  path: '/assets',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardAuditRoute = DashboardAuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardExposureRoute = DashboardExposureRouteImport.update({
+  id: '/exposure',
+  path: '/exposure',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardThreatsRoute = DashboardThreatsRouteImport.update({
+  id: '/threats',
+  path: '/threats',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardWarningsRoute = DashboardWarningsRouteImport.update({
+  id: '/warnings',
+  path: '/warnings',
+  getParentRoute: () => DashboardRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof DashboardRoute
+  '/': typeof DashboardIndexRoute
+  '/approvals': typeof DashboardApprovalsRoute
+  '/assets': typeof DashboardAssetsRoute
+  '/audit': typeof DashboardAuditRoute
+  '/exposure': typeof DashboardExposureRoute
+  '/settings': typeof DashboardSettingsRoute
+  '/threats': typeof DashboardThreatsRoute
+  '/warnings': typeof DashboardWarningsRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof DashboardRoute
+  '/approvals': typeof DashboardApprovalsRoute
+  '/assets': typeof DashboardAssetsRoute
+  '/audit': typeof DashboardAuditRoute
+  '/exposure': typeof DashboardExposureRoute
+  '/settings': typeof DashboardSettingsRoute
+  '/threats': typeof DashboardThreatsRoute
+  '/warnings': typeof DashboardWarningsRoute
+  '/': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_dashboard': typeof DashboardRoute
+  '/_dashboard': typeof DashboardRouteWithChildren
+  '/_dashboard/approvals': typeof DashboardApprovalsRoute
+  '/_dashboard/assets': typeof DashboardAssetsRoute
+  '/_dashboard/audit': typeof DashboardAuditRoute
+  '/_dashboard/exposure': typeof DashboardExposureRoute
+  '/_dashboard/settings': typeof DashboardSettingsRoute
+  '/_dashboard/threats': typeof DashboardThreatsRoute
+  '/_dashboard/warnings': typeof DashboardWarningsRoute
+  '/_dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/approvals'
+    | '/assets'
+    | '/audit'
+    | '/exposure'
+    | '/settings'
+    | '/threats'
+    | '/warnings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/_dashboard'
+  to:
+    | '/approvals'
+    | '/assets'
+    | '/audit'
+    | '/exposure'
+    | '/settings'
+    | '/threats'
+    | '/warnings'
+    | '/'
+  id:
+    | '__root__'
+    | '/_dashboard'
+    | '/_dashboard/approvals'
+    | '/_dashboard/assets'
+    | '/_dashboard/audit'
+    | '/_dashboard/exposure'
+    | '/_dashboard/settings'
+    | '/_dashboard/threats'
+    | '/_dashboard/warnings'
+    | '/_dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  DashboardRoute: typeof DashboardRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -47,11 +143,93 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_dashboard/': {
+      id: '/_dashboard/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/approvals': {
+      id: '/_dashboard/approvals'
+      path: '/approvals'
+      fullPath: '/approvals'
+      preLoaderRoute: typeof DashboardApprovalsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/assets': {
+      id: '/_dashboard/assets'
+      path: '/assets'
+      fullPath: '/assets'
+      preLoaderRoute: typeof DashboardAssetsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/audit': {
+      id: '/_dashboard/audit'
+      path: '/audit'
+      fullPath: '/audit'
+      preLoaderRoute: typeof DashboardAuditRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/exposure': {
+      id: '/_dashboard/exposure'
+      path: '/exposure'
+      fullPath: '/exposure'
+      preLoaderRoute: typeof DashboardExposureRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/settings': {
+      id: '/_dashboard/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/threats': {
+      id: '/_dashboard/threats'
+      path: '/threats'
+      fullPath: '/threats'
+      preLoaderRoute: typeof DashboardThreatsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/warnings': {
+      id: '/_dashboard/warnings'
+      path: '/warnings'
+      fullPath: '/warnings'
+      preLoaderRoute: typeof DashboardWarningsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
   }
 }
 
+interface DashboardRouteChildren {
+  DashboardApprovalsRoute: typeof DashboardApprovalsRoute
+  DashboardAssetsRoute: typeof DashboardAssetsRoute
+  DashboardAuditRoute: typeof DashboardAuditRoute
+  DashboardExposureRoute: typeof DashboardExposureRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardThreatsRoute: typeof DashboardThreatsRoute
+  DashboardWarningsRoute: typeof DashboardWarningsRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardApprovalsRoute: DashboardApprovalsRoute,
+  DashboardAssetsRoute: DashboardAssetsRoute,
+  DashboardAuditRoute: DashboardAuditRoute,
+  DashboardExposureRoute: DashboardExposureRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardThreatsRoute: DashboardThreatsRoute,
+  DashboardWarningsRoute: DashboardWarningsRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  DashboardRoute: DashboardRoute,
+  DashboardRoute: DashboardRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
