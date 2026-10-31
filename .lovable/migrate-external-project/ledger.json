@@ -1,0 +1,91 @@
+{
+  "source": "code-archive",
+  "source_name": "sentinel-grid-frontend-development.zip (Next.js 16 App Router, pnpm)",
+  "capabilities": [
+    {
+      "capability": "code",
+      "source": "Single-page Next.js client dashboard (app/page.tsx) with in-state section switching",
+      "outcome": "Rebuilt as TanStack Start: one route per section under a shared dashboard layout; build OK, routing test passed, browser walkthrough verified all 8 sections, warning drawer, acknowledge, filters, theme toggle and global search",
+      "status": "verified",
+      "next_action": null
+    },
+    {
+      "capability": "schema",
+      "source": "absent (no database; synthetic in-code data arrays)",
+      "outcome": "none required",
+      "status": "none",
+      "next_action": null
+    },
+    {
+      "capability": "records",
+      "source": "absent",
+      "outcome": "none required",
+      "status": "none",
+      "next_action": null
+    },
+    {
+      "capability": "auth",
+      "source": "absent (static demo user Alex Kim, no login)",
+      "outcome": "none required",
+      "status": "none",
+      "next_action": null
+    },
+    {
+      "capability": "uploaded_files",
+      "source": "absent",
+      "outcome": "none required",
+      "status": "none",
+      "next_action": null
+    },
+    {
+      "capability": "external_providers",
+      "source": "@vercel/analytics (production-only, Vercel-hosted)",
+      "outcome": "Dropped as Vercel-specific; Lovable hosting supplies analytics",
+      "status": "accepted",
+      "next_action": null
+    },
+    {
+      "capability": "public_endpoints",
+      "source": "absent",
+      "outcome": "none required",
+      "status": "none",
+      "next_action": null
+    },
+    {
+      "capability": "webhooks",
+      "source": "absent",
+      "outcome": "none required",
+      "status": "none",
+      "next_action": null
+    },
+    {
+      "capability": "schedules",
+      "source": "absent",
+      "outcome": "none required",
+      "status": "none",
+      "next_action": null
+    },
+    {
+      "capability": "secrets",
+      "source": "none required (NODE_ENV only)",
+      "outcome": "none",
+      "status": "none",
+      "next_action": null
+    },
+    {
+      "capability": "cutover",
+      "source": "new build, no prior live deployment detected",
+      "outcome": "n/a",
+      "status": "none",
+      "next_action": null
+    },
+    {
+      "capability": "verification",
+      "source": "build + routing test + browser walkthrough",
+      "outcome": "Build OK; app-routing test passed; Playwright walkthrough of all sections and interactions clean, no console errors",
+      "status": "verified",
+      "next_action": null
+    }
+  ],
+  "warnings": []
+}
