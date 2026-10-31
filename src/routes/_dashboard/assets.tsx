@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Search, Server, SlidersHorizontal, Upload } from "lucide-react";
 
-import { Card, SectionTitle, SeverityBadge, assets, type Severity } from "@/components/dashboard/data";
+import { Card, EmptyState, SectionTitle, SeverityBadge, assets, type Severity } from "@/components/dashboard/data";
 
 export const Route = createFileRoute("/_dashboard/assets")({
   component: AssetInventory,
