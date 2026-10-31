@@ -106,6 +106,8 @@
 /* Light theme, applied by the in-app toggle (.light-theme on the shell). */
 .light-theme {
   color-scheme: light;
+  /* Base text colour for the shell and anything that inherits it. */
+  color: #102338;
   --background: oklch(0.974 0.006 239.8);
   --card: oklch(1 0 0);
   --surface: oklch(1 0 0);
