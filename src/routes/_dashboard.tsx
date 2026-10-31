@@ -50,7 +50,7 @@ function DashboardLayout() {
 function DashboardChrome() {
   const { theme, toggleTheme, collapsed, setCollapsed, query, setQuery, selected } = useDashboard();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const current = NAV.find((n) => n.to === pathname) ?? NAV[0];
+  const current = NAV.find((n) => n.to === pathname) ?? { label: "Overview", icon: LayoutDashboard, to: "/" as const };
 
   return (
     <div className={`${theme === "light" ? "light-theme" : ""} min-h-screen bg-background text-slate-100 selection:bg-teal-400/30`}>
