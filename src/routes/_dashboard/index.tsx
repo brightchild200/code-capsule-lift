@@ -73,7 +73,7 @@ function Overview() {
                 <div key={i} className="group relative flex h-full flex-1 items-end">
                   <div
                     style={{ height: `${n / 1.55}%` }}
-                    className="rounded-t-sm bg-linear-to-t from-teal-500/30 to-cyan-300 transition-all group-hover:from-teal-400 group-hover:to-cyan-200"
+                    className="w-full rounded-t-sm bg-linear-to-t from-teal-500/30 to-cyan-300 transition-all group-hover:from-teal-400 group-hover:to-cyan-200"
                   />
                 </div>
               ),
