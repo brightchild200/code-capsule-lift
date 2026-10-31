@@ -70,7 +70,7 @@ function Overview() {
           <div className="flex h-48 items-end gap-2 border-b border-l border-slate-700/60 px-3 pb-0 pt-5">
             {[32, 45, 38, 56, 49, 68, 61, 75, 83, 71, 91, 88, 74, 96, 82, 100, 89, 76, 95, 88, 106, 92, 101, 112, 104, 118, 110, 126, 121, 139].map(
               (n, i) => (
-                <div key={i} className="group relative flex-1">
+                <div key={i} className="group relative flex h-full flex-1 items-end">
                   <div
                     style={{ height: `${n / 1.55}%` }}
                     className="rounded-t-sm bg-linear-to-t from-teal-500/30 to-cyan-300 transition-all group-hover:from-teal-400 group-hover:to-cyan-200"
