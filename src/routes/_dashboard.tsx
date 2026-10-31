@@ -84,6 +84,7 @@ function DashboardChrome() {
               <Link
                 key={label}
                 to={to}
+                onClick={() => setMobileOpen(false)}
                 className={`group flex w-full items-center gap-3 rounded-lg px-3 py-3 text-left text-xs font-medium transition ${active ? "bg-teal-400/10 text-teal-300" : "text-slate-400 hover:bg-slate-800/60 hover:text-slate-200"}`}
                 title={collapsed ? label : undefined}
               >
@@ -128,7 +129,12 @@ function DashboardChrome() {
       <div className={`min-h-screen transition-all ${collapsed ? "lg:pl-[76px]" : "lg:pl-[248px]"}`}>
         <header className="sticky top-0 z-20 flex h-[72px] items-center justify-between border-b border-slate-800/80 bg-background/95 px-4 backdrop-blur-md lg:px-8">
           <div className="flex items-center gap-3">
-            <button className="text-slate-400 lg:hidden" aria-label="Open menu">
+            <button
+              className="rounded-lg p-2 text-slate-400 hover:bg-slate-800 lg:hidden"
+              aria-label="Open menu"
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen(true)}
+            >
               <Menu className="h-5 w-5" />
             </button>
             <div className="hidden items-center gap-2 text-xs text-slate-500 sm:flex">
