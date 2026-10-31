@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { CheckCircle2, ShieldAlert, X, Zap } from "lucide-react";
 
 import { Card, SeverityBadge } from "@/components/dashboard/data";
@@ -5,6 +6,16 @@ import { useDashboard } from "@/components/dashboard/dashboard-context";
 
 export function WarningDrawer() {
   const { selected, setSelected, ack, setAck } = useDashboard();
+
+  useEffect(() => {
+    if (!selected) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelected(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selected, setSelected]);
+
   if (!selected) return null;
   const warning = selected;
   const acknowledged = ack.includes(warning.id);

@@ -22,6 +22,8 @@ type DashboardContextValue = {
   toggleTheme: () => void;
   collapsed: boolean;
   setCollapsed: Dispatch<SetStateAction<boolean>>;
+  mobileOpen: boolean;
+  setMobileOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 const DashboardContext = createContext<DashboardContextValue | null>(null);
@@ -32,6 +34,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
   const [selected, setSelected] = useState<WarningRow | null>(null);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <DashboardContext.Provider
@@ -46,6 +49,8 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
         toggleTheme: () => setTheme((t) => (t === "dark" ? "light" : "dark")),
         collapsed,
         setCollapsed,
+        mobileOpen,
+        setMobileOpen,
       }}
     >
       {children}

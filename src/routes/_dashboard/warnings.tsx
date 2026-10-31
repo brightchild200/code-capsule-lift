@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { AlertTriangle, Filter } from "lucide-react";
 
-import { Card, SectionTitle, SeverityBadge, warnings, type Severity } from "@/components/dashboard/data";
+import { Card, EmptyState, SectionTitle, SeverityBadge, warnings, type Severity } from "@/components/dashboard/data";
 import { useDashboard } from "@/components/dashboard/dashboard-context";
 
 export const Route = createFileRoute("/_dashboard/warnings")({
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/_dashboard/warnings")({
 });
 
 function WarningCentre() {
-  const { query, ack, setSelected } = useDashboard();
+  const { query, setQuery, ack, setSelected } = useDashboard();
   const [severityFilter, setSeverityFilter] = useState<Severity | "All">("All");
   const [statusFilter, setStatusFilter] = useState("All");
 
@@ -90,10 +90,28 @@ function WarningCentre() {
           <span>Status</span>
           <span>Detected</span>
         </div>
-        {filtered.map((w) => (
-          <button
-            key={w.id}
-            onClick={() => setSelected(w)}
+        {filtered.length === 0 ? (
+          <EmptyState
+            icon={AlertTriangle}
+            title="No warnings match your filters"
+            detail="Try a different search term, or reset the severity and status filters to see the full queue."
+          >
+            <button
+              onClick={() => {
+                setSeverityFilter("All");
+                setStatusFilter("All");
+                setQuery("");
+              }}
+              className="rounded-lg border border-slate-700 px-3 py-2 text-xs font-medium text-slate-300 hover:bg-slate-800"
+            >
+              Clear filters
+            </button>
+          </EmptyState>
+        ) : (
+          filtered.map((w) => (
+            <button
+              key={w.id}
+              onClick={() => setSelected(w)}
             className="grid w-full items-center gap-4 border-b border-slate-700/40 px-5 py-4 text-left transition last:border-0 hover:bg-slate-800/40 md:grid-cols-[1.1fr_2fr_0.7fr_0.65fr_0.7fr_0.8fr_0.8fr]"
           >
             <div>
@@ -117,14 +135,15 @@ function WarningCentre() {
             </div>
             <div>
               <span
-                className={`rounded px-2 py-1 text-[10px] ${ack.includes(w.id) || w.status === "Acknowledged" ? "bg-teal-400/10 text-teal-300" : "bg-slate-700 text-slate-300"}`}
+                className={`whitespace-nowrap rounded px-2 py-1 text-[10px] ${ack.includes(w.id) || w.status === "Acknowledged" ? "bg-teal-400/10 text-teal-300" : "bg-slate-700 text-slate-300"}`}
               >
                 {ack.includes(w.id) ? "Acknowledged" : w.status}
               </span>
             </div>
             <div className="text-[11px] text-slate-500">{w.detected}</div>
           </button>
-        ))}
+          ))
+        )}
       </Card>
     </>
   );
